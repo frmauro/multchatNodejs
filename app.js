@@ -7,4 +7,13 @@ var server = app.listen(8087, function(){
 });
 
 
-require('socket.io').listen(server);
+var io = require('socket.io').listen(server);
+
+// criar a conexao por websocket
+io.on('connection', function(socket){
+    console.log('usuario conectou');
+
+    socket.on('disconnect', function(){
+        console.log('usuario desconectou');
+    });
+});
